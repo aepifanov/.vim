@@ -47,6 +47,7 @@ set tabstop=4                     " size tabs
 set softtabstop=4
 set smarttab
 set expandtab                     " change tabs on space
+set smartindent
 set foldenable                    " folding enable
 set fdm=manual                    " manual folding
 set foldopen=all                  " auto open folding

@@ -49,3 +49,5 @@ hi Type                             ctermfg=DarkCyan
 hi Structure                        ctermfg=Green
 hi Todo         ctermbg=Red         ctermfg=Yellow
 hi Label                            ctermfg=DarkMagenta
+hi Pmenu        ctermbg=Blue        ctermfg=White
+hi PmenuSel     ctermbg=White       ctermfg=Black
