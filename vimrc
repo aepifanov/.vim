@@ -59,7 +59,7 @@ set novisualbell                  " No beeping.
 "   Fugitive
 "   Useful status information at bottom of screen
 "   %{fugitive#statusline()}
-set statusline=[%n]\ %<%.99f\ %h%w%m%r\ %=%-16(\ [%l,%c%V]\ %)%P
+set statusline=[%n]\ %<%.99f\ %h%w%m%r\ %{fugitive#statusline()}\ %=%-16(\ [%l,%c%V]\ %)%P
 
 "   %%
 cabbr <expr> %% substitute(expand('%:p:h'), getcwd() . '/', '', '')
@@ -120,9 +120,11 @@ imap <F9>       <esc>:TlistToggle<cr>
 map  <F10>           :TagbarToggle<cr>
 imap <F10>      <esc>:TagbarToggle<cr>
 
-"
-"map  <F11>           :
-"imap <F11>      <esc>:
+"    CTags
+let g:ctags_regenerate=0
+let Tlist_Ctags_Cmd='"ctags"'
+map  <F11>           :!ctags -x %<cr>
+imap <F11>      <esc>:!ctags -x %<cr>
 
 "   PEP8
 let g:pep8_map='<F12>'
