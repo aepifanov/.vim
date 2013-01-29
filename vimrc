@@ -130,15 +130,3 @@ imap <F11>      <esc>:!ctags -x %<cr>
 let g:pep8_map='<F12>'
 "map  <F12>           :
 "imap <F12>      <esc>:
-
-
-"   Automatically removing all trailing whitespace
-highlight ExtraWhitespace ctermbg=red
-match ExtraWhitespace /\s\+$/
-
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-autocmd BufWritePre * :%s/\s\+$//e
