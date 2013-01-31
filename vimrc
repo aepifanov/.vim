@@ -64,9 +64,14 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r\ %{fugitive#statusline()}\ %=%-16(\ [%l,%
 "   %%
 cabbr <expr> %% substitute(expand('%:p:h'), getcwd() . '/', '', '')
 
+"   Grep
+let g:Grep_Default_Options = '-srnw --binary-files=without-match'
+let g:Grep_Skip_Dirs = '.git .svn'
+let g:Grep_Skip_Files = '*.bak, tags, *~'
 
 "   SuperTab
 let g:SuperTabDefaultCompletionType = "context"
+
 
 """"""""""Keys"""""""""
 
@@ -88,9 +93,9 @@ imap <F1>       <esc>:NERDTree<cr>
 map  <F2>            :w<cr>
 imap <F2>       <esc>:w<cr>
 
-"
-"map  <F3>            :
-"imap <F3>       <esc>:
+"   Recursive Fast Grep
+map  <F3>            :Rfgrep <cword><cr>
+imap <F3>       <esc>:Rfgrep <cword><cr>
 
 "
 "map  <F4>            :
@@ -109,8 +114,8 @@ map  <F7>            :bp<cr>
 imap <F7>       <esc>:bp<cr>
 
 "   Del buffer
-map  <F8>            :bd<cr>
-imap <F8>       <esc>:bd<cr>
+map  <F8>            :CloseFile<cr>
+imap <F8>       <esc>:CloseFile<cr>
 
 "   TListToggle
 map  <F9>            :TlistToggle<cr>
@@ -130,3 +135,22 @@ imap <F11>      <esc>:!ctags -x %<cr>
 let g:pep8_map='<F12>'
 "map  <F12>           :
 "imap <F12>      <esc>:
+
+command CloseFile call CleanClose(0)
+function! CleanClose(tosave)
+    if (a:tosave == 1)
+        w!
+    endif
+    let todelbufNr = bufnr("%")
+    let newbufNr = bufnr("#")
+    if ((newbufNr != -1) && (newbufNr != todelbufNr) && buflisted(newbufNr))
+        exe "b".newbufNr
+    else
+        bnext
+    endif
+
+    if (bufnr("%") == todelbufNr)
+        new
+    endif
+    exe "bd".todelbufNr
+endfunction
