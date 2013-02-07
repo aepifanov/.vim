@@ -40,3 +40,6 @@
 [submodule "bundle/grep"]
 	path = bundle/grep
 	url = https://github.com/vairix-amuhlethaler/grep_vim.git
+[submodule "bundle/viewdoc"]
+	path = bundle/viewdoc
+	url = https://github.com/powerman/vim-plugin-viewdoc.git

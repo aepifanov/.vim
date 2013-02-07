@@ -64,6 +64,10 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r\ %{fugitive#statusline()}\ %=%-16(\ [%l,%
 "   %%
 cabbr <expr> %% substitute(expand('%:p:h'), getcwd() . '/', '', '')
 
+"   Viewdoc
+let g:no_viewdoc_maps = 1
+let g:viewdoc_only = 1
+
 "   Grep
 let g:Grep_Default_Options = '-srnw --binary-files=without-match'
 let g:Grep_Skip_Dirs = '.git .svn'
