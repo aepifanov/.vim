@@ -9,7 +9,7 @@ filetype plugin indent on
 
 "   Default vimrc
 if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
+    source /etc/vim/vimrc.local
 endif
 
 "   Syntax highlighting
@@ -56,6 +56,8 @@ set nowritebackup
 set noswapfile
 set novisualbell                  " No beeping.
 
+set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:_
+
 "   Fugitive
 "   Useful status information at bottom of screen
 "   %{fugitive#statusline()}
@@ -69,13 +71,16 @@ let g:no_viewdoc_maps = 1
 let g:viewdoc_only = 1
 
 "   Grep
-let g:Grep_Default_Options = '-srnw --binary-files=without-match'
-let g:Grep_Skip_Dirs = '.git .svn'
-let g:Grep_Skip_Files = '*.bak, tags, *~'
+let Grep_Default_Options = '-sn --binary-files=without-match'
+let Grep_Skip_Dirs = '.git .svn'
+let Grep_Skip_Files = 'tags *.bak *~'
+let Grep_Default_Filelist = '*.c *.cpp *.h *.py'
 
 "   SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
+"   Conque
+command Zsh call conque_term#open("zsh", ['belowright vsplit'])
 
 """"""""""Keys"""""""""
 
@@ -90,6 +95,7 @@ map  <C-j>           <C-e>
 map  <C-k>           <C-y>
 
 "   NERDTreeToggle
+let NERDTreeIgnore =['\.pyc$','\.o$']
 map  <F1>            :NERDTree<cr>
 imap <F1>       <esc>:NERDTree<cr>
 
@@ -97,13 +103,13 @@ imap <F1>       <esc>:NERDTree<cr>
 map  <F2>            :w<cr>
 imap <F2>       <esc>:w<cr>
 
-"   Recursive Fast Grep
-map  <F3>            :Rfgrep <cword><cr>
-imap <F3>       <esc>:Rfgrep <cword><cr>
+"    CScope find global
+map  <F3>            :cs f g <c-r>=expand("<cword>")<cr><cr>
+imap <F3>       <esc>:cs f g <c-r>=expand("<cword>")<cr><cr>
 
-"
-"map  <F4>            :
-"imap <F4>       <esc>:
+"    CScope find calls
+map  <F4>            :cs f c <c-r>=expand("<cword>")<cr><cr>
+imap <F4>       <esc>:cs f c <c-r>=expand("<cword>")<cr><cr>
 
 "   BufExplorer
 map  <F5>            :BufExplorer<cr>
@@ -129,11 +135,9 @@ imap <F9>       <esc>:TlistToggle<cr>
 map  <F10>           :TagbarToggle<cr>
 imap <F10>      <esc>:TagbarToggle<cr>
 
-"    CTags
-let g:ctags_regenerate=0
-let Tlist_Ctags_Cmd='"ctags"'
-map  <F11>           :!ctags -x %<cr>
-imap <F11>      <esc>:!ctags -x %<cr>
+"   Recursive Fast Grep
+map  <F11>           :Rfgrep <cword><cr>
+imap <F11>      <esc>:Rfgrep <cword><cr>
 
 "   PEP8
 let g:pep8_map='<F12>'
@@ -158,3 +162,39 @@ function! CleanClose(tosave)
     endif
     exe "bd".todelbufNr
 endfunction
+
+
+"autocmd BufWritePre * :RetabIndents
+command! RetabIndents call RetabIndents()
+
+func! RetabIndents()
+    let saved_view = winsaveview()
+    execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
+    call winrestview(saved_view)
+endfunc
+
+
+
+"    Ctags generate tags
+map <leader>ct :!ctags -R .<CR>
+
+"    CScope generate base
+map <leader>cs :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
+            \:!cscope -b -i cscope.files -f cscope.out<CR>
+            \:cs reset<CR>
+
+"    CScope
+if has("cscope")
+    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+    set cscopetag
+
+    " show msg when any other cscope db added
+    "set cscopeverbose
+
+    if filereadable("cscope.out")
+        cs add cscope.out
+        " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+endif " has("cscope")

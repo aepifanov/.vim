@@ -2,7 +2,7 @@
 
 let python_highlight_all = 1
 
-set colorcolumn=81
+set colorcolumn=80
 
 "   PEP8
 let g:pep8_map='<F12>'
