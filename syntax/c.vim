@@ -315,59 +315,85 @@ else
   exec "syn sync ccomment cComment minlines=" . b:c_minlines
 endif
 
+syn keyword cCLibMacros
+            \ TEMP_FAILURE_RETRY
+            \ AF_INET INADDR_ANY SOCK_STREAM SOCK_DGRAM PF_INET AF_INET PF_UNIX
+            \ PTHREAD_MUTEX_INITIALIZER PTHREAD_COND_INITIALIZER
 
-syn keyword cCLibFunc      malloc calloc free printk printf fprintf sprinf snprintf vsnprintf scanf fscanf memcpy memcmp memset open fopen close fclose fsync fflush send recv write read strlcpy strncpy strlen ntohl htonl sleep exit signal fork exec system va_start va_end strerror
-syn keyword cCLibFuncFail  sprinf strcpy goto errno 
+syn keyword cCLibFunc
+            \ getopt sysconf
+            \ backtrace backtrace_symbols
+            \ malloc calloc free
+            \ printk printf fprintf sprinf snprintf vsnprintf vfprintf asprintf
+            \ pscanf fscanf sscanf
+            \ memcpy memcmp memset
+            \ open fopen close fclose fsync fflush
+            \ setsockopt socket listen bind connect gethostbyname
+            \ send recv  write read
+            \ strlcpy strncpy strlen strcmp strcasecmp
+            \ ntohl ntons htonl htons
+            \ sleep exit
+            \ signal
+            \ fork exec system
+            \ va_start va_end
+            \ strerror
+            \ sem_init sem_wait sem_post
+            \ pthread_cleanup_push pthread_cleanup_pop
+            \ pthread_mutex_init pthread_mutex_lock pthread_mutex_unlock
+            \ pthread_create pthread_cancel pthread_testcancel pthread_join pthread_detach
+            \ pthread_cond_signal pthread_cond_wait
+syn keyword cCLibFuncFail  sprinf strcpy goto errno
 
 " Define the default highlighting.
 " Only used when an item doesn't have highlighting yet
-hi def link cFormat     cSpecial
-hi def link cCppString      cString
-hi def link cCommentL       cComment
-hi def link cCommentStart   cComment
-hi def link cLabel      Label
-hi def link cUserLabel      Label
-hi def link cConditional    Conditional
-hi def link cRepeat     Repeat
-hi def link cCharacter      Character
+hi def link cFormat             cSpecial
+hi def link cCppString          cString
+hi def link cCommentL           cComment
+hi def link cCommentStart       cComment
+hi def link cLabel              Label
+hi def link cUserLabel          Label
+hi def link cConditional        Conditional
+hi def link cRepeat             Repeat
+hi def link cCharacter          Character
 hi def link cSpecialCharacter   cSpecial
-hi def link cNumber     Number
-hi def link cOctal      Number
-hi def link cOctalZero      PreProc  " link this to Error if you want
-hi def link cFloat      Float
-hi def link cOctalError     cError
-hi def link cParenError     cError
-hi def link cErrInParen     cError
-hi def link cErrInBracket   cError
-hi def link cCommentError   cError
+hi def link cNumber             Number
+hi def link cOctal              Number
+hi def link cOctalZero          PreProc  " link this to Error if you want
+hi def link cFloat              Float
+hi def link cOctalError         cError
+hi def link cParenError         cError
+hi def link cErrInParen         cError
+hi def link cErrInBracket       cError
+hi def link cCommentError       cError
 hi def link cCommentStartError  cError
-hi def link cSpaceError     cError
-hi def link cSpecialError   cError
-hi def link cCurlyError     cError
-hi def link cOperator       Operator
-hi def link cStructure      Structure
-hi def link cStorageClass   StorageClass
-hi def link cInclude        Include
-hi def link cPreProc        PreProc
-hi def link cDefine     Macro
-hi def link cIncluded       cString
-hi def link cError      Error
-hi def link cStatement      Statement
-hi def link cPreCondit      PreCondit
-hi def link cType       Type
-hi def link cConstant       Constant
-hi def link cCommentString  cString
-hi def link cComment2String cString
-hi def link cCommentSkip    cComment
-hi def link cString     String
-hi def link cComment        Comment
-hi def link cSpecial        SpecialChar
-hi def link cTodo       Todo
-hi def link cCppSkip        cCppOut
-hi def link cCppOut2        cCppOut
-hi def link cCppOut     Comment
-hi def link cCLibFunc       CLibFunc
-hi def link cCLibFuncFail   CLibFuncFail
+hi def link cSpaceError         cError
+hi def link cSpecialError       cError
+hi def link cCurlyError         cError
+hi def link cOperator           Operator
+hi def link cStructure          Structure
+hi def link cStorageClass       StorageClass
+hi def link cInclude            Include
+hi def link cPreProc            PreProc
+hi def link cDefine             Macro
+hi def link cIncluded           cString
+hi def link cError              Error
+hi def link cStatement          Statement
+hi def link cPreCondit          PreCondit
+hi def link cType               Type
+hi def link cConstant           Constant
+hi def link cCommentString      cString
+hi def link cComment2String     cString
+hi def link cCommentSkip        cComment
+hi def link cString             String
+hi def link cComment            Comment
+hi def link cSpecial            SpecialChar
+hi def link cTodo               Todo
+hi def link cCppSkip            cCppOut
+hi def link cCppOut2            cCppOut
+hi def link cCppOut             Comment
+hi def link cCLibMacros         CLibMacros
+hi def link cCLibFunc           CLibFunc
+hi def link cCLibFuncFail       CLibFuncFail
 
 let b:current_syntax = "c"
 

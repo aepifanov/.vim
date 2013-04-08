@@ -15,27 +15,28 @@ let colors_name = "andrey_black"
 hi Normal       ctermbg=Black       ctermfg=White
 hi NonText                          ctermfg=Yellow
 hi ErrorMsg     ctermbg=Red         ctermfg=White
-hi Visual       ctermbg=Black       
+hi Visual       ctermbg=Black
 hi Cursor       ctermbg=Black       ctermfg=Black
-hi Directory                        ctermfg=Blue     
+hi Directory                        ctermfg=Blue
 hi LineNr       ctermbg=Blue        ctermfg=White
 hi MoreMsg                          ctermfg=Red
-hi Question                         ctermfg=Green    
+hi Question                         ctermfg=Green
 hi Search       ctermbg=White       ctermfg=Black
-hi SpecialKey                       ctermfg=Green     
-hi Title                            ctermfg=Magenta  
-hi WarningMsg                       ctermfg=Red      
-hi WildMenu     ctermbg=White       ctermfg=Black         
-hi Folded       ctermbg=Grey        ctermfg=Blue      
-hi FoldColumn   ctermbg=Grey        ctermfg=DarkBlue      
-hi DiffAdd      ctermbg=Green                                         
-hi DiffChange   ctermbg=Yellow                                        
-hi DiffDelete   ctermbg=Red         ctermfg=White 
-hi DiffText     ctermbg=Red         
+hi SpecialKey                       ctermfg=Green
+hi Title                            ctermfg=Magenta
+hi WarningMsg                       ctermfg=Red
+hi WildMenu     ctermbg=White       ctermfg=Black
+hi Folded       ctermbg=Grey        ctermfg=Blue
+hi FoldColumn   ctermbg=Grey        ctermfg=DarkBlue
+hi DiffAdd      ctermbg=Green
+hi DiffChange   ctermbg=Yellow
+hi DiffDelete   ctermbg=Red         ctermfg=White
+hi DiffText     ctermbg=Red
 hi MatchParen   ctermbg=Red         ctermfg=White
+hi CLibMacros                       ctermfg=DarkGreen
 hi CLibFunc                         ctermfg=Blue
 hi CLibFuncFail                     ctermfg=Red
-hi Constant                         ctermfg=Green       
+hi Constant                         ctermfg=Green
 hi Special                          ctermfg=Yellow
 hi Statement                        ctermfg=Green
 hi String                           ctermfg=Magenta
