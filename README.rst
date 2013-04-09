@@ -14,28 +14,28 @@ SubModules
     * NerdTree
         File system explorer.
 
-        *HotKey <F1>*
+        **HotKey <F1>**
 
         https://github.com/scrooloose/nerdtree.git      
 
     * BufExplorer  
         VIM buffer explorer.
 
-        *HotKey <F5>*
+        **HotKey <F5>**
 
         https://github.com/thisivan/vim-bufexplorer.git 
 
     * TagBar
         Tags browser.
 
-        *HotKey <F10>*
+        **HotKey <F10>**
 
         https://github.com/majutsushi/tagbar.git
 
     * Gundo
         VIM plugin to visualize your Vim undo tree.
         
-        *HotKey        <leader>g*
+        **HotKey        <leader>g**
 
         https://github.com/sjl/gundo.vim.git
 
@@ -48,7 +48,7 @@ SubModules
     * Fugitive 
         GIT wrapper.
         
-         https://github.com/tpope/vim-fugitive.git
+        https://github.com/tpope/vim-fugitive.git
 
     * Grep VIM 
         rep search tools integration with Vim
@@ -63,7 +63,7 @@ SubModules
     * SuperTab 
         VIM plugin which allows you to use <Tab> for all your insert completion needs.
         
-        *HotKey <Tab>*
+        **HotKey <Tab>**
         
         https://github.com/ervandew/supertab.git
 
@@ -71,7 +71,7 @@ SubModules
         It allows you to use the pylint, rope, pydoc, pyflakes, pep8, mccabe libraries in vim 
         to provide features like python code looking for bugs, refactoring and some other useful things.
         
-         https://github.com/klen/python-mode.git
+        https://github.com/klen/python-mode.git
 
     * PythonSyntax 
         Python syntax file for Vim editor.
@@ -81,7 +81,7 @@ SubModules
     * PEP8 
         VIM plugin that just checks if your python code is pep-8 compliant.
         
-        *HotKey <F10>*
+        **HotKey <F10>**
         
         https://github.com/vim-scripts/pep8.git
 
