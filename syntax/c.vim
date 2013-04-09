@@ -321,27 +321,27 @@ syn keyword cCLibMacros
             \ PTHREAD_MUTEX_INITIALIZER PTHREAD_COND_INITIALIZER
 
 syn keyword cCLibFunc
+            \ sleep exit signal
+            \ fork exec system
             \ getopt sysconf
             \ backtrace backtrace_symbols
-            \ malloc calloc free
+            \ va_start va_end va_arg va_copy
+            \ memcpy memcmp memset
+            \ strlcpy strncpy strlen strcmp strncmp strcasecmp strstr
+            \ strerror strerror_r
+            \ malloc calloc free alloca realloc
             \ printk printf fprintf sprinf snprintf vsnprintf vfprintf asprintf
             \ pscanf fscanf sscanf
-            \ memcpy memcmp memset
             \ open fopen close fclose fsync fflush
-            \ setsockopt socket listen bind connect gethostbyname
-            \ send recv  write read
-            \ strlcpy strncpy strlen strcmp strcasecmp
+            \ write read writev pwritev readv preadv
+            \ setsockopt socket listen bind connect gethostbyname accept
+            \ send recv
             \ ntohl ntons htonl htons
-            \ sleep exit
-            \ signal
-            \ fork exec system
-            \ va_start va_end
-            \ strerror
-            \ sem_init sem_wait sem_post
+            \ pthread_create pthread_cancel pthread_testcancel pthread_join pthread_detach pthread_exit pthread_self
             \ pthread_cleanup_push pthread_cleanup_pop
-            \ pthread_mutex_init pthread_mutex_lock pthread_mutex_unlock
-            \ pthread_create pthread_cancel pthread_testcancel pthread_join pthread_detach
-            \ pthread_cond_signal pthread_cond_wait
+            \ pthread_mutex_init pthread_mutex_destroy pthread_mutex_lock pthread_mutex_unlock pthread_mutex_try_lock
+            \ pthread_cond_signal pthread_cond_wait pthread_cond_init  pthread_cond_broadcast pthread_cond_destroy
+            \ sem_init sem_wait sem_post sem_close sem_destroy sem_getvalue sem_trywait
 syn keyword cCLibFuncFail  sprinf strcpy goto errno
 
 " Define the default highlighting.
