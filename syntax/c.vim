@@ -318,6 +318,7 @@ endif
 syn keyword cCLibMacros
             \ TEMP_FAILURE_RETRY
             \ AF_INET INADDR_ANY SOCK_STREAM SOCK_DGRAM PF_INET AF_INET PF_UNIX
+            \ SO_REUSEADDR SO_LINGER
             \ PTHREAD_MUTEX_INITIALIZER PTHREAD_COND_INITIALIZER
 
 syn keyword cCLibFunc
