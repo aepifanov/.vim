@@ -21,3 +21,9 @@ $(HOME)/.vimrc: $(HOME)/.vim
 # target: update      - Update  VIM files.
 update:
 	git pull $(GITHUB_REPO)/.vim.git master && git submodule update
+
+
+.PHONY: push
+# target: push        - Push    VIM files update to repo.
+push:
+	git push git@github.com:aepifanov/.vim.git master
