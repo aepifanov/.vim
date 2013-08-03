@@ -9,7 +9,7 @@ filetype plugin indent on
 
 "   Default vimrc
 if filereadable("/etc/vim/vimrc.local")
-	source /etc/vim/vimrc.local
+    source /etc/vim/vimrc.local
 endif
 
 "   Syntax highlighting
@@ -48,7 +48,7 @@ set fdm=manual                    " Manual folding
 set foldopen=all                  " Auto open folding
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains
-								  " Capital letter.
+                                  " Capital letter.
 set nowrap                        " Turn on line wrapping.
 set nobackup
 set nofoldenable                  " Folding disable
@@ -146,33 +146,26 @@ let g:pep8_map='<F12>'
 
 command CloseFile call CleanClose(0)
 function! CleanClose(tosave)
-	if (a:tosave == 1)
-		w!
-	endif
-	let todelbufNr = bufnr("%")
-	let newbufNr = bufnr("#")
-	if ((newbufNr != -1) && (newbufNr != todelbufNr) && buflisted(newbufNr))
-		exe "b".newbufNr
-	else
-		bnext
-	endif
+    if (a:tosave == 1)
+        w!
+    endif
+    let todelbufNr = bufnr("%")
+    let newbufNr = bufnr("#")
+    if ((newbufNr != -1) && (newbufNr != todelbufNr) && buflisted(newbufNr))
+        exe "b".newbufNr
+    else
+        bnext
+    endif
 
-	if (bufnr("%") == todelbufNr)
-		new
-	endif
-	exe "bd".todelbufNr
+    if (bufnr("%") == todelbufNr)
+        new
+    endif
+    exe "bd".todelbufNr
 endfunction
 
-
-"   Replace all TAB on SPACES
-command! RetabIndents call RetabIndents()
-map <leader>t :RetabIndents<CR>
-
-func! RetabIndents()
-	let saved_view = winsaveview()
-	execute '%s@^\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(0))/'.&ts.')@e'
-	call winrestview(saved_view)
-endfunc
+"   Show hidden files
+"   set list
+"   retab
 
 "   Automatically removing all trailing whitespace
 highlight ExtraWhitespace ctermbg=red
@@ -191,21 +184,21 @@ map <leader>ct :!ctags -R .<CR>
 
 "    CScope generate base
 map <leader>cs :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
-			\:!cscope -b -i cscope.files -f cscope.out<CR>
-			\:cs reset<CR>
+            \:!cscope -b -i cscope.files -f cscope.out<CR>
+            \:cs reset<CR>
 
 "    CScope
 if has("cscope")
-	" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-	set cscopetag
+    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+    set cscopetag
 
-	" show msg when any other cscope db added
-	"set cscopeverbose
+    " show msg when any other cscope db added
+    "set cscopeverbose
 
-	if filereadable("cscope.out")
-		cs add cscope.out
-		" else add database pointed to by environment
-	elseif $CSCOPE_DB != ""
-		cs add $CSCOPE_DB
-	endif
+    if filereadable("cscope.out")
+        cs add cscope.out
+        " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
 endif " has("cscope")
