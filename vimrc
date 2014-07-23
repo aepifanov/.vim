@@ -84,6 +84,8 @@ command Zsh call conque_term#open("zsh", ['belowright vsplit'])
 
 """"""""""Keys"""""""""
 
+nnoremap Q <nop>
+
 "   Gundo
 map <leader>g :GundoToggle<CR>
 
