@@ -80,7 +80,7 @@ let Grep_Default_Filelist = '*.c *.cpp *.h *.py'
 let g:SuperTabDefaultCompletionType = "context"
 
 "   Conque
-command Zsh call conque_term#open("zsh", ['belowright vsplit'])
+command! Zsh call conque_term#open("zsh", ['belowright vsplit'])
 
 """"""""""Keys"""""""""
 
@@ -146,7 +146,7 @@ let g:pep8_map='<F12>'
 "map  <F12>           :
 "imap <F12>      <esc>:
 
-command CloseFile call CleanClose(0)
+command! CloseFile call CleanClose(0)
 function! CleanClose(tosave)
     if (a:tosave == 1)
         w!
@@ -183,7 +183,6 @@ autocmd BufWinLeave * call clearmatches()
 
 autocmd BufWritePre * :%s/\s\+$//e
 
-
 "    Ctags generate tags
 map <leader>ct :!ctags -R .<CR>
 
@@ -207,3 +206,8 @@ if has("cscope")
         cs add $CSCOPE_DB
     endif
 endif " has("cscope")
+
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
