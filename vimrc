@@ -103,13 +103,13 @@ imap <F1>       <esc>:NERDTree<cr>
 map  <F2>            :w<cr>
 imap <F2>       <esc>:w<cr>
 
-"    CScope find global
-map  <F3>            :cs f g <c-r>=expand("<cword>")<cr><cr>
-imap <F3>       <esc>:cs f g <c-r>=expand("<cword>")<cr><cr>
+"
+"map  <F3>            :
+"imap <F3>       <esc>:
 
-"    CScope find calls
-map  <F4>            :cs f c <c-r>=expand("<cword>")<cr><cr>
-imap <F4>       <esc>:cs f c <c-r>=expand("<cword>")<cr><cr>
+"
+"map  <F4>            :
+"imap <F4>       <esc>:
 
 "   BufExplorer
 map  <F5>            :BufExplorer<cr>
@@ -127,9 +127,9 @@ imap <F7>       <esc>:bp<cr>
 map  <F8>            :CloseFile<cr>
 imap <F8>       <esc>:CloseFile<cr>
 
-"   TListToggle
-map  <F9>            :TlistToggle<cr>
-imap <F9>       <esc>:TlistToggle<cr>
+"
+"map  <F9>            :
+"imap <F9>       <esc>:
 
 "   TagbarToggle
 map  <F10>           :TagbarToggle<cr>
@@ -204,6 +204,20 @@ if has("cscope")
         cs add $CSCOPE_DB
     endif
 endif " has("cscope")
+
+
+"Automatically set paste mode in Vim when pasting in insert mode
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+      set pastetoggle=<Esc>[201~
+        set paste
+          return ""
+      endfunction
+
 
 augroup reload_vimrc " {
     autocmd!
