@@ -79,8 +79,9 @@ let Grep_Default_Filelist = '*.c *.cpp *.h *.py'
 "   SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
-"   Conque
-command! Zsh call conque_term#open("zsh", ['belowright vsplit'])
+"   Fuzzy
+map <leader>f ::FufCoverageFile<cr>
+
 
 """"""""""Keys"""""""""
 
@@ -131,8 +132,8 @@ map  <F8>            :CloseFile<cr>
 imap <F8>       <esc>:CloseFile<cr>
 
 "
-"map  <F9>            :
-"imap <F9>       <esc>:
+map  <F9>            :man <cword><cr>>
+imap <F9>       <esc>:man <cword><cr>>
 
 "   TagbarToggle
 map  <F10>           :TagbarToggle<cr>
