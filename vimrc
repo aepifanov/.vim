@@ -184,8 +184,8 @@ map  <C-k>           <C-y>
 " NERDTreeToggle
 let g:NERDTreeDirArrows=0
 let NERDTreeIgnore =['\.pyc$','\.o$']
-map  <F1>            :NERDTree<cr>
-imap <F1>       <esc>:NERDTree<cr>
+map  <F1>            :NERDTreeToggle<cr>
+imap <F1>       <esc>:NERDTreeToggle<cr>
 
 " Save file
 map  <F2>            :w<cr>
