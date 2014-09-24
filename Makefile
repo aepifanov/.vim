@@ -2,6 +2,7 @@
 # Makefile for the management of configuration files.
 
 GITHUB_REPO = git://github.com/aepifanov
+VUNDLE_REPO = https://github.com/gmarik/Vundle.vim.git
 
 .PHONY: help
 help:
@@ -11,19 +12,12 @@ help:
 
 .PHONY: install
 # target: install     - Install VIM files.
-install: $(HOME)/.vimrc 
+install: $(HOME)/.vimrc \
+	     $(HOME)/.vim/bundle/vundle
 
-$(HOME)/.vimrc: $(HOME)/.vim
+$(HOME)/.vimrc:
 		ln -s $(HOME)/.vim/vimrc $@
 
-
-.PHONY: update
-# target: update      - Update  VIM files.
-update:
-	git pull $(GITHUB_REPO)/.vim.git master && git submodule update
-
-
-.PHONY: push
-# target: push        - Push    VIM files update to repo.
-push:
-	git push git@github.com:aepifanov/.vim.git master
+$(HOME)/.vim/bundle/vundle:
+	git clone $(VUNDLE_REPO) bundle/vundle
+	vim +PluginInstall +qall
