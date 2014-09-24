@@ -53,6 +53,9 @@ set novisualbell                  " No beeping.
 " StatusLine
 set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:_
 
+" %%
+cabbr <expr> %% substitute(expand('%:p:h'), getcwd() . '/', '', '')
+
 
 
 """" Vundle Settings
@@ -108,8 +111,6 @@ Plugin 'powerman/vim-plugin-viewdoc'
 
 
 
-
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -136,14 +137,12 @@ filetype plugin indent on    " required
 " %{fugitive#statusline()}
 set statusline=[%n]\ %<%.99f\ %h%w%m%r\ %{fugitive#statusline()}\ %=%-16(\ [%l,%c%V]\ %)%P
 
-" %%
-cabbr <expr> %% substitute(expand('%:p:h'), getcwd() . '/', '', '')
 
 " SuperTab
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabDefaultCompletionType = "context"
 
-" session
+" Session
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 
@@ -157,9 +156,9 @@ let Grep_Skip_Dirs = '.git .svn'
 let Grep_Skip_Files = 'tags *.bak *~'
 let Grep_Default_Filelist = '*.c *.cpp *.h *.py'
 
-" Fuzzy
-map <leader>f ::FufCoverageFile<cr>
-
+" NERDTreeToggle
+let g:NERDTreeDirArrows=0
+let NERDTreeIgnore =['\.pyc$','\.o$']
 
 
 """" Keys
@@ -172,6 +171,9 @@ nnoremap Q <nop>
 " Gundo
 map <leader>g :GundoToggle<CR>
 
+" FuzzyFinder
+map <leader>f ::FufCoverageFile<cr>
+
 " Set normal mode
 map  <C-l>           :noh<cr>
 
@@ -182,8 +184,6 @@ map  <C-k>           <C-y>
 
 
 " NERDTreeToggle
-let g:NERDTreeDirArrows=0
-let NERDTreeIgnore =['\.pyc$','\.o$']
 map  <F1>            :NERDTreeToggle<cr>
 imap <F1>       <esc>:NERDTreeToggle<cr>
 
