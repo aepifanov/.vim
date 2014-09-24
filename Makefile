@@ -19,5 +19,5 @@ $(HOME)/.vimrc:
 		ln -s $(HOME)/.vim/vimrc $@
 
 $(HOME)/.vim/bundle/vundle:
-	git clone $(VUNDLE_REPO) bundle/vundle
+	git clone $(VUNDLE_REPO) bundle/Vundle.vim
 	vim +PluginInstall +qall
