@@ -84,7 +84,6 @@ Plugin 'thisivan/vim-bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'sjl/gundo.vim'
 Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/pep8'
 Plugin 'klen/python-mode'
 Plugin 'me-vlad/python-syntax.vim'
 Plugin 'vim-scripts/L9'
@@ -218,9 +217,9 @@ imap <F7>       <esc>:bp<cr>
 map  <F8>            :CloseFile<cr>
 imap <F8>       <esc>:CloseFile<cr>
 
-" Man
-map  <F9>            :man <cword><cr>>
-imap <F9>       <esc>:man <cword><cr>>
+"
+"map  <F9>            :
+"imap <F9>       <esc>:
 
 " TagbarToggle
 map  <F10>           :TagbarToggle<cr>
@@ -230,10 +229,9 @@ imap <F10>      <esc>:TagbarToggle<cr>
 map  <F11>           :Rfgrep <cword><cr>
 imap <F11>      <esc>:Rfgrep <cword><cr>
 
-" PEP8
-let g:pep8_map='<F12>'
-"map  <F12>           :
-"imap <F12>      <esc>:
+" Man
+map  <F12>            :man <cword><cr>>
+imap <F12>       <esc>:man <cword><cr>>
 
 
 
