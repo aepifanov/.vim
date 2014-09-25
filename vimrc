@@ -168,8 +168,11 @@ let NERDTreeIgnore =['\.pyc$','\.o$']
 " Avoid problem with key Q
 nnoremap Q <nop>
 
+" Open .vimrc
+map <leader>v :e ~/.vimrc<cr>
+
 " Gundo
-map <leader>g :GundoToggle<CR>
+map <leader>g :GundoToggle<cr>
 
 " FuzzyFinder
 map <leader>f ::FufCoverageFile<cr>
@@ -308,15 +311,15 @@ endfunction
 call CScopeAttach()
 
 " Ctags generate tags
-map <leader>ct :!ctags -R .<CR>
+map <leader>ct :!ctags -R .<cr>
 
 " CScope generate base
-map <leader>cs :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
-            \:!cscope -b -i cscope.files -f cscope.out<CR>
-            \:cs reset<CR>
+map <leader>cs :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<cr>
+            \:!cscope -b -i cscope.files -f cscope.out<cr>
+            \:cs reset<cr>
 
 " Attach CScope
-map <leader>ca :call CScopeAttach()<CR>
+map <leader>ca :call CScopeAttach()<cr>
 
 
 

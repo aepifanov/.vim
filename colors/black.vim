@@ -10,7 +10,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "andrey_black"
+let colors_name = "black"
 
 hi Normal       ctermbg=Black       ctermfg=White
 hi NonText                          ctermfg=Yellow
