@@ -39,7 +39,7 @@ set smartindent
 set modeline
 set linebreak                     " Wrap only whole words
 set fdm=manual                    " Manual folding
-set foldopen=all                  " Auto open folding
+"set foldopen=all                  " Auto open folding
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains
                                   " Capital letter.
@@ -78,19 +78,17 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'thisivan/vim-bufexplorer'
+Plugin 'vairix-amuhlethaler/grep_vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
 Plugin 'majutsushi/tagbar'
-Plugin 'sjl/gundo.vim'
 Plugin 'ervandew/supertab'
+Plugin 'powerman/vim-plugin-viewdoc'
+Plugin 'sjl/gundo.vim'
 Plugin 'klen/python-mode'
 Plugin 'me-vlad/python-syntax.vim'
-Plugin 'vim-scripts/L9'
-Plugin 'vim-scripts/FuzzyFinder'
-Plugin 'vim-scripts/mru.vim'
-Plugin 'vairix-amuhlethaler/grep_vim'
-Plugin 'powerman/vim-plugin-viewdoc'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -159,6 +157,13 @@ let Grep_Default_Filelist = '*.c *.cpp *.h *.py'
 let g:NERDTreeDirArrows=0
 let NERDTreeIgnore =['\.pyc$','\.o$']
 
+" CtrlP
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|o|pyc)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 
 """" Keys
 
@@ -172,9 +177,6 @@ map <leader>v :e ~/.vimrc<cr>
 
 " Gundo
 map <leader>g :GundoToggle<cr>
-
-" FuzzyFinder
-map <leader>f ::FufCoverageFile<cr>
 
 " Set normal mode
 map  <C-l>           :noh<cr>
@@ -230,8 +232,8 @@ map  <F11>           :Rfgrep <cword><cr>
 imap <F11>      <esc>:Rfgrep <cword><cr>
 
 " Man
-map  <F12>            :man <cword><cr>>
-imap <F12>       <esc>:man <cword><cr>>
+map  <F12>           :man <cword><cr>>
+imap <F12>      <esc>:man <cword><cr>>
 
 
 
