@@ -168,7 +168,8 @@ let g:ctrlp_custom_ignore = {
 
 """" Keys
 
-
+" Add jj as ESC
+inoremap jj <ESC>
 
 " Avoid problem with key Q
 nnoremap Q <nop>
@@ -326,7 +327,12 @@ map <leader>ca :call CScopeAttach()<cr>
 
 """"" Autoswitching to the paste mode
 
-
+"set paste
+"set nopaste
+"
+"nnoremap <F2> :set invpaste paste?<CR>
+"set pastetoggle=<F2>
+"set showmode
 
 "Automatically set paste mode in Vim when pasting in insert mode
 let &t_SI .= "\<Esc>[?2004h"
@@ -335,10 +341,10 @@ let &t_EI .= "\<Esc>[?2004l"
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 function! XTermPasteBegin()
-      set pastetoggle=<Esc>[201~
-        set paste
-          return ""
-      endfunction
+    set pastetoggle=<Esc>[201~
+    set paste
+    return ""
+endfunction
 
 
 
