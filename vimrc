@@ -86,10 +86,11 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
-Plugin 'powerman/vim-plugin-viewdoc'
+"Plugin 'powerman/vim-plugin-viewdoc'
 Plugin 'sjl/gundo.vim'
 Plugin 'klen/python-mode'
 Plugin 'me-vlad/python-syntax.vim'
+Plugin 'puppetlabs/puppet-syntax-vim'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
