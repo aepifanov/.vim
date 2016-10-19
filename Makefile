@@ -21,3 +21,5 @@ $(HOME)/.vimrc:
 $(HOME)/.vim/bundle/vundle:
 	git clone $(VUNDLE_REPO) bundle/Vundle.vim
 	vim +PluginInstall +qall
+
+# go get -u github.com/jstemmer/gotags
