@@ -92,6 +92,7 @@ Plugin 'klen/python-mode'
 Plugin 'me-vlad/python-syntax.vim'
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'fatih/vim-go'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
