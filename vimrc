@@ -28,6 +28,7 @@ set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 set autoread                      " Auto reread file
+set autowrite                     " Auto write file on make
 set completeopt=longest,menuone   " Enable auto complete ?
 set browsedir=buffer              " Set dir at current buffer(file)
 set shiftwidth=4                  " Size auto indent
@@ -93,6 +94,13 @@ Plugin 'me-vlad/python-syntax.vim'
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
+Plugin 'Shougo/vimshell'
+Plugin 'Shougo/vimproc'
+Plugin 'sebdah/vim-delve'
+"Plugin 'tpope/vim-surround'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+Plugin 'Raimondi/delimitMate'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -131,7 +139,21 @@ filetype plugin indent on    " required
 
 """" Plugins Settings
 
+let g:delve_backend = "native"
 
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+let delimitMate_jump_expansion = 1
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-t>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"let delimitMate_jump_expansion = 1
 
 "   Fugitive
 " Useful status information at bottom of screen
@@ -180,6 +202,9 @@ nnoremap Q <nop>
 " Open .vimrc
 map <leader>v :e ~/.vimrc<cr>
 
+" No number
+map <leader>n :set nonumber<cr>
+
 " Gundo
 map <leader>g :GundoToggle<cr>
 
@@ -189,6 +214,34 @@ map  <C-l>           :noh<cr>
 " Page Down/Up
 map  <C-j>           <C-e>
 map  <C-k>           <C-y>
+
+
+let g:go_test_timeout = '10s'
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_auto_sameids = 1
+
+
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
 
 
 
@@ -201,8 +254,8 @@ map  <F2>            :w<cr>
 imap <F2>       <esc>:w<cr>
 
 "
-"map  <F3>            :
-"imap <F3>       <esc>:
+map  <F3>            :GoDef
+imap <F3>       <esc>:
 
 "
 "map  <F4>            :
@@ -379,9 +432,6 @@ let g:tagbar_type_go = {
 
 
 """" Autoreload vimrc
-
-
-
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
