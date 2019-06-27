@@ -11,6 +11,3 @@ imap <F3>       <esc>:cs f g <c-r>=expand("<cword>")<cr><cr>
 map  <F4>            :cs f c <c-r>=expand("<cword>")<cr><cr>
 imap <F4>       <esc>:cs f c <c-r>=expand("<cword>")<cr><cr>
 
-"   TListToggle
-map  <F9>            :TlistToggle<cr>
-imap <F9>       <esc>:TlistToggle<cr>

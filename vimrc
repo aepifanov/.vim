@@ -92,7 +92,7 @@ Plugin 'sjl/gundo.vim'
 Plugin 'klen/python-mode'
 Plugin 'me-vlad/python-syntax.vim'
 Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+"Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
 Plugin 'Shougo/vimshell'
 Plugin 'Shougo/vimproc'
@@ -138,7 +138,6 @@ filetype plugin indent on    " required
 
 
 """" Plugins Settings
-
 let g:delve_backend = "native"
 
 let delimitMate_expand_cr = 1
@@ -177,7 +176,7 @@ let g:viewdoc_only = 1
 let Grep_Default_Options = '-sn --binary-files=without-match'
 let Grep_Skip_Dirs = '.git .svn'
 let Grep_Skip_Files = 'tags *.bak *~'
-let Grep_Default_Filelist = '*.c *.cpp *.h *.py'
+let Grep_Default_Filelist = '*.c *.cc *.cpp *.h *.py *.go'
 
 " NERDTreeToggle
 let g:NERDTreeDirArrows=0
@@ -224,10 +223,9 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_auto_sameids = 1
 
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -254,8 +252,8 @@ map  <F2>            :w<cr>
 imap <F2>       <esc>:w<cr>
 
 "
-map  <F3>            :GoDef
-imap <F3>       <esc>:
+"map  <F3>            :GoDef
+"imap <F3>       <esc>:
 
 "
 "map  <F4>            :
@@ -277,17 +275,17 @@ imap <F7>       <esc>:bp<cr>
 map  <F8>            :CloseFile<cr>
 imap <F8>       <esc>:CloseFile<cr>
 
-"
-"map  <F9>            :
-"imap <F9>       <esc>:
+" Recursive Fast Grep
+map  <F9>           :Rfgrep <cword><cr>
+imap <F9>      <esc>:Rfgrep <cword><cr>
 
 " TagbarToggle
 map  <F10>           :TagbarToggle<cr>
 imap <F10>      <esc>:TagbarToggle<cr>
 
-" Recursive Fast Grep
-map  <F11>           :Rfgrep <cword><cr>
-imap <F11>      <esc>:Rfgrep <cword><cr>
+"
+"map  <F11>            :
+"imap <F11>       <esc>:
 
 " Man
 map  <F12>           :man <cword><cr>>
@@ -342,10 +340,7 @@ autocmd BufWinLeave * call clearmatches()
 autocmd BufWritePre * :%s/\s\+$//e
 
 
-
 """" Ctags and CScope
-
-
 
 " CScope
 function! CScopeAttach()
