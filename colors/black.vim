@@ -15,7 +15,8 @@ let colors_name = "black"
 hi Normal       ctermbg=Black       ctermfg=White
 hi NonText                          ctermfg=Yellow
 hi ErrorMsg     ctermbg=Red         ctermfg=White
-hi Visual       ctermbg=Black
+"hi Visual       ctermbg=Black
+hi Visual term=reverse cterm=reverse guibg=Grey
 hi Cursor       ctermbg=Black       ctermfg=Black
 hi Directory                        ctermfg=Blue
 hi LineNr       ctermbg=Blue        ctermfg=White
