@@ -85,22 +85,25 @@ Plugin 'vairix-amuhlethaler/grep_vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-eunuch'
+"Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 "Plugin 'powerman/vim-plugin-viewdoc'
 Plugin 'sjl/gundo.vim'
-Plugin 'klen/python-mode'
+"Plugin 'klen/python-mode'
 Plugin 'me-vlad/python-syntax.vim'
-Plugin 'puppetlabs/puppet-syntax-vim'
+"Plugin 'puppetlabs/puppet-syntax-vim'
 "Plugin 'nsf/gocode', {'rtp': 'vim/'}
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
+"Plugin 'vim-scripts/Conque-GDB'
 Plugin 'Shougo/vimshell'
 Plugin 'Shougo/vimproc'
-Plugin 'sebdah/vim-delve'
-"Plugin 'tpope/vim-surround'
+"Plugin 'sebdah/vim-delve'
 "Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
 Plugin 'Raimondi/delimitMate'
+Plugin 'pedrohdz/vim-yaml-folds'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -199,10 +202,16 @@ inoremap jj <ESC>
 nnoremap Q <nop>
 
 " Open .vimrc
-map <leader>v :e ~/.vimrc<cr>
+map <leader>v :e ~/.vim/vimrc<cr>
+
+" No number
+map <leader>N :set number<cr>
 
 " No number
 map <leader>n :set nonumber<cr>
+
+" Make
+map <leader>m :make<cr>
 
 " Gundo
 map <leader>g :GundoToggle<cr>
@@ -224,6 +233,7 @@ let g:go_highlight_function_calls = 1
 let g:go_auto_sameids = 1
 
 let g:go_def_mode='gopls'
+let g:go_def_mod_mode='godef'
 let g:go_info_mode='gopls'
 
 
@@ -240,7 +250,12 @@ endfunction
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
-
+map <leader>gr :GoDebugStart<cr>
+map <leader>gp :GoDebugStop<cr>
+map <leader>gc :GoDebugContinue<cr>
+map <leader>gn :GoDebugNext<cr>
+map <leader>gs :GoDebugStep<cr>
+map <leader>gb :GoDebugBreakpoint<cr>
 
 
 " NERDTreeToggle
@@ -425,9 +440,29 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
     \ }
 
+function! LineBreakAt(bang, ...) range
+  let save_search = @/
+  if empty(a:bang)
+    let before = ''
+    let after = '\ze.'
+    let repl = '&\r'
+  else
+    let before = '.\zs'
+    let after = ''
+    let repl = '\r&'
+  endif
+  let pat_list = map(deepcopy(a:000), "escape(v:val, '/\\.*$^~[')")
+  let find = empty(pat_list) ? @/ : join(pat_list, '\|')
+  let find = before . '\%(' . find . '\)' . after
+  " Example: 10,20s/\%(arg1\|arg2\|arg3\)\ze./&\r/ge
+  execute a:firstline . ',' . a:lastline . 's/'. find . '/' . repl . '/ge'
+  let @/ = save_search
+endfunction
+
 
 """" Autoreload vimrc
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+
